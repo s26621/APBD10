@@ -29,13 +29,13 @@ public class PrescriptionEFConfig : IEntityTypeConfiguration<Prescription>
 
         Prescription[] prescriptions =
         {
-            new () {IdPrescription = 1, Date = DateTime.Parse("2024-05-10"), IdDoctor = 1, IdPatient = 1, DueDate = DateTime.Parse("2024-10-12")},
-            new () {IdPrescription = 2, Date = DateTime.Parse("2024-05-15"), IdDoctor = 2, IdPatient = 2, DueDate = DateTime.Parse("2024-11-02")},
-            new () {IdPrescription = 3, Date = DateTime.Parse("2024-04-31"), IdDoctor = 1, IdPatient = 2, DueDate = DateTime.Parse("2024-10-04")},
-            new () {IdPrescription = 4, Date = DateTime.Parse("2024-05-14"), IdDoctor = 2, IdPatient = 1, DueDate = DateTime.Parse("2024-11-05")},
-            new () {IdPrescription = 5, Date = DateTime.Parse("2024-05-24"), IdDoctor = 2, IdPatient = 1, DueDate = DateTime.Parse("2024-11-06")},
-            new () {IdPrescription = 6, Date = DateTime.Parse("2024-05-30"), IdDoctor = 3, IdPatient = 1, DueDate = DateTime.Parse("2024-12-26")},
-            new () {IdPrescription = 7, Date = DateTime.Parse("2024-04-29"), IdDoctor = 3, IdPatient = 3, DueDate = DateTime.Parse("2024-11-12")},
+            new () {IdPrescription = 1, Date = DateOnly.Parse("2024-05-10"), IdDoctor = 1, IdPatient = 1, DueDate = DateOnly.Parse("2024-10-12")},
+            new () {IdPrescription = 2, Date = DateOnly.Parse("2024-05-15"), IdDoctor = 2, IdPatient = 2, DueDate = DateOnly.Parse("2024-11-02")},
+            new () {IdPrescription = 3, Date = DateOnly.Parse("2024-04-31"), IdDoctor = 1, IdPatient = 2, DueDate = DateOnly.Parse("2024-10-04")},
+            new () {IdPrescription = 4, Date = DateOnly.Parse("2024-05-14"), IdDoctor = 2, IdPatient = 1, DueDate = DateOnly.Parse("2024-11-05")},
+            new () {IdPrescription = 5, Date = DateOnly.Parse("2024-05-24"), IdDoctor = 2, IdPatient = 1, DueDate = DateOnly.Parse("2024-11-06")},
+            new () {IdPrescription = 6, Date = DateOnly.Parse("2024-05-30"), IdDoctor = 3, IdPatient = 1, DueDate = DateOnly.Parse("2024-12-26")},
+            new () {IdPrescription = 7, Date = DateOnly.Parse("2024-04-29"), IdDoctor = 3, IdPatient = 3, DueDate = DateOnly.Parse("2024-11-12")},
         };
 
         builder.HasData(prescriptions);

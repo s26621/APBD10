@@ -32,9 +32,9 @@ public class PatientEFConfig : IEntityTypeConfiguration<Patient>
 
         Patient[] patients =
         {
-            new() { IdPatient = 1, FirstName = "Ula", LastName = "Mapsa", BirthDate = DateTime.Parse("2000-01-20") },
-            new() { IdPatient = 2, FirstName = "Ela", LastName = "Manic", BirthDate = DateTime.Parse("1995-04-14") },
-            new() { IdPatient = 3, FirstName = "Andrzej", LastName = "Towalnie", BirthDate = DateTime.Parse("1998-12-30") },
+            new() { IdPatient = 1, FirstName = "Ula", LastName = "Mapsa", BirthDate = DateOnly.Parse("2000-01-20") },
+            new() { IdPatient = 2, FirstName = "Ela", LastName = "Manic", BirthDate = DateOnly.Parse("1995-04-14") },
+            new() { IdPatient = 3, FirstName = "Andrzej", LastName = "Towalnie", BirthDate = DateOnly.Parse("1998-12-30") },
         };
 
         builder.HasData(patients);
