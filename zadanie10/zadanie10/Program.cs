@@ -11,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddTransient<IPrescriptionRepository, PrescriptionRepository>();
+builder.Services.AddTransient<IMedicamentRepository, MedicamentRepository>();
+builder.Services.AddTransient<IPatientRepository, PatientRepository>();
 builder.Services.AddTransient<IPrescriptionService, PrescriptionService>();
 
 builder.Services.AddDbContext<HospitalDbContext>(opt =>

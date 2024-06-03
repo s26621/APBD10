@@ -13,8 +13,9 @@ public class PrescriptionService : IPrescriptionService
         _repository = repository;
     }
 
-    public Prescription? CreatePrescription(Patient patient, List<MedicamentDTO> medicaments, DateOnly date, DateOnly dueDate)
+    public async Task<Prescription?> CreatePrescription(PrescriptionDTO prescriptionDTO)
     {
-        return _repository.CreatePrescription(patient, medicaments, date, dueDate);
+        if (prescriptionDTO.date > prescriptionDTO.dueDate) return null;
+        return await _repository.CreatePrescription(prescriptionDTO);
     }
 }

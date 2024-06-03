@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using zadanie10.DTO;
 using zadanie10.Entities;
 
@@ -7,27 +8,41 @@ namespace zadanie10.Repositories;
 public class PrescriptionRepository : IPrescriptionRepository
 {
     private readonly HospitalDbContext _context;
+    private readonly IMedicamentRepository _medRepository;
+    public readonly IPatientRepository _patientRepository;
 
-    public PrescriptionRepository(HospitalDbContext context)
+    public PrescriptionRepository(HospitalDbContext context, IMedicamentRepository medRepository, IPatientRepository patientRepository)
     {
         _context = context;
+        _medRepository = medRepository;
+        _patientRepository = patientRepository;
     }
 
-    public Prescription? CreatePrescription(Patient patient, List<MedicamentDTO> medicaments, DateOnly date, DateOnly dueDate)
+    public async Task<Prescription?> CreatePrescription(PrescriptionDTO prescriptionDTO)
     {
-        var isPatient = _context.Patients.Find(patient.IdPatient);
-        if (isPatient == null)
+        (Patient patient, List<MedicamentDTO> medicaments, DateTime date, DateTime dueDate) = prescriptionDTO;
+        
+        if (!await _patientRepository.DoesPatientExist(patient))
         {
-            _context.Patients.Add(patient);
+            _patientRepository.AddPatient(patient);
         }
-        if (medicaments.Count > 10) return null;
-        foreach (var medicament in medicaments)
-        {
-            if (_context.Medicaments.Find(medicament.IdMedicament) == null) return null;
-        }
-        if (date > dueDate) return null;
-
-        var id = _context.Prescriptions.Max(x => x.IdPrescription) + 1;
+        
+        if (!_medRepository.IsNumberOfMedsLowerThanLimit(medicaments)) return null;
+        if (!await _medRepository.DoAllMedsExist(medicaments)) return null;
+        
+        // to zamiast tego niżej
+        // foreach (var medicament in medicaments)
+        // {
+        //     if (_context.Medicaments.Find(medicament.IdMedicament) == null) return null;
+        // }
+        
+        
+        // to w service
+        // if (date > dueDate) return null;
+        
+        var id = GetNewId();
+        
+        // to już tu
         var prescription = new Prescription
         {
             IdPrescription = id,
@@ -41,5 +56,10 @@ public class PrescriptionRepository : IPrescriptionRepository
 
         return(prescription);
 
+    }
+
+    private int GetNewId()
+    {
+        return _context.Prescriptions.Max(x => x.IdPrescription) + 1;
     }
 }

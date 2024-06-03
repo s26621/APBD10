@@ -5,5 +5,5 @@ namespace zadanie10.Repositories;
 
 public interface IPrescriptionRepository
 {
-    public Prescription? CreatePrescription(Patient patient, List<MedicamentDTO> medicaments, DateOnly date, DateOnly dueDate);
+    public Task<Prescription?> CreatePrescription(PrescriptionDTO prescription);
 }

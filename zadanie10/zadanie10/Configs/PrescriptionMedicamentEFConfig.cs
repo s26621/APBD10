@@ -27,7 +27,7 @@ public class PrescriptionMedicamentEFConfig : IEntityTypeConfiguration<Prescript
 
         builder
             .Property(x => x.Details)
-            .HasMaxLength(20)
+            .HasMaxLength(100)
             .IsRequired();
 
         builder.ToTable(nameof(Prescription)+"_"+nameof(Medicament));

@@ -18,15 +18,15 @@ public class DoctorEFConfig : IEntityTypeConfiguration<Doctor>
         builder
             .Property(x => x.FirstName)
             .IsRequired()
-            .HasMaxLength(10);
+            .HasMaxLength(20);
         builder
             .Property(x => x.LastName)
             .IsRequired()
-            .HasMaxLength(10);
+            .HasMaxLength(20);
         builder
             .Property(x => x.Email)
             .IsRequired()
-            .HasMaxLength(20);
+            .HasMaxLength(40);
 
         builder.ToTable(nameof(Doctor));
 

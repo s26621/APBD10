@@ -17,10 +17,10 @@ public class PrescriptionController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreatePrescription(Patient patient, List<MedicamentDTO> medicaments, DateOnly date, DateOnly dueDate)
+    public async Task<IActionResult> CreatePrescription(PrescriptionDTO prescription)
     {
-        var prescription = _service.CreatePrescription(patient, medicaments, date, dueDate);
-        if (prescription == null) return BadRequest();
+        var pr = await _service.CreatePrescription(prescription);
+        if (pr == null) return BadRequest();
         return Created();
 
     }

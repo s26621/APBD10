@@ -27,7 +27,15 @@ public class MedicamentEFConfig : IEntityTypeConfiguration<Medicament>
         builder
             .Property(e => e.Name)
             .IsRequired()
-            .HasMaxLength(10);
+            .HasMaxLength(20);
+        builder
+            .Property(e => e.Description)
+            .IsRequired()
+            .HasMaxLength(100);
+        builder
+            .Property(e => e.Type)
+            .IsRequired()
+            .HasMaxLength(40);
         
         // domyślnie nazwy tabel będą nazwane z dopiskiem "s" do nazwy, a w podejściu relacyjnym popwinno być w liczbie pojedynczej
         // dzięki nameof nie wpisujemy na sztywno i jeśli zrobimy refactor to to wciąż zadziała
