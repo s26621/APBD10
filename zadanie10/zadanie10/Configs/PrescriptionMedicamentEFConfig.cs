@@ -32,7 +32,6 @@ public class PrescriptionMedicamentEFConfig : IEntityTypeConfiguration<Prescript
 
         builder.ToTable(nameof(Prescription)+"_"+nameof(Medicament));
 
-        // pr - 7, med - 4
         PrescriptionMedicament[] prescriptionMedicaments =
         {
             new () {IdMedicament = 1, IdPrescription = 1, Dose = 3, Details = "onie"},

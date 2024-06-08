@@ -33,3 +33,19 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.Run();
+
+// w metodach service, controller i reposotory nie używamy z entities tylko DTO wszystko, nawet jak są te same pola
+// testowa strategia - robię DTO tylko kiedy potrzebuję ich do końcówki, na początku są takie same pola, a potem najwyżej usunę te nieużywane?
+
+// przechodzimy przez wszystkie pola na rysunku klasy, tam gdzie FK robimy tamtą akcję
+// zaczynamy konfiguracje tam, gdzie jest liczność 1 - FK
+
+// skopiować linq tutorials!
+
+// dotnet jak zainstalować? kolejne kroki
+
+// dotnet ef migrations add Start
+
+// dotnet ef database update
+
+// dotnet ef migrations remove jak nie pyknie i nie jest jeszcze na bazie
